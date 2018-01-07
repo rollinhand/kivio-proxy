@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>proxy</artifactId>
+    <groupId>org.kivio</groupId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Nginx Proxy</name>
+    <properties>
+        <version>${project.version}</version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.22.1</version>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>kivio:nginx-proxy</name>
+                            <alias>proxy</alias>
+                            <build>
+                                <dockerFileDir>${project.basedir}/src/main/docker</dockerFileDir>
+                                <compression>gzip</compression>
+                            </build>
+                            <run>
+                                <ports>
+                                    <port>80:80</port>
+                                </ports>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
