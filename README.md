@@ -8,7 +8,7 @@ exposed with their internal ports.
 ## Usage
 Docker container can be build with `mvn clean package docker:build`.
 
-Container can be started with `docker run --name nginx-proxy --restart unless-stopped -d nginx-proxy`.
+Container can be started with `docker run -p80:80 --name kivio-proxy --restart unless-stopped -d kivio-proxy`.
 
 ## Documentation
 Configuration is based on the following resources:
