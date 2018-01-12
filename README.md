@@ -8,7 +8,20 @@ exposed with their internal ports.
 ## Usage
 Docker container can be build with `mvn clean package docker:build`.
 
-Container can be started with `docker run -p80:80 --name kivio-proxy --restart unless-stopped -d kivio-proxy`.
+Container can be started with `docker run -d --name kivio-proxy --restart unless-stopped --network=kivio kivio-proxy`.
+
+It is important conatiner runs with `--network`-Flag, so NGINX can use DNS resolving
+for upstream servers. It is convenient naming upstream server hostnames like the containers
+name or alias. 
+
+## Build
+On local machine image can be build with `docker build -t kivio-proxy:latest .`
+
+## Network
+Therefore containers can see each other and be resolved via DNS inside each container,
+a user-defined network named *kivio* is created:
+
+`docker network create --driver bridge kivio`
 
 ## Documentation
 Configuration is based on the following resources:
